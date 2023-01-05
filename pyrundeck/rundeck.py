@@ -157,8 +157,9 @@ class Rundeck(object):
         url = "{}/projects".format(self.API_URL)
         return self.__get(url)
 
-    def list_jobs(self, project):
-        url = "{}/project/{}/jobs".format(self.API_URL, project)
+    def list_jobs(self, project, tags=[]):
+        parms = ("?tags="+",".join(tags)) if tags else ""
+        url = "{}/project/{}/jobs{}".format(self.API_URL, project, parms)
         return self.__get(url)
 
     def list_all_jobs(self):
